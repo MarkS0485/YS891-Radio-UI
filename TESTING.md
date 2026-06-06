@@ -105,7 +105,7 @@ Status legend: ✅ verified against the built-in simulator during development (2
 
 ## Audio views (VIEW key cycles LIVE → WAVE → SPEC → FALL)
 
-> Audio comes from a Windows input device (the rig's USB audio codec, line-in, or any microphone for testing) — CAT cannot carry audio.
+> Audio comes from a Windows input device. The FT-891's USB port is CAT-only (no built-in sound card) — the real-radio hookup is the rig's audio out through a splitter into the PC's **line-in**, at which point the views show the receiver's actual passband. Loopback ("what you hear") and any microphone work for testing.
 
 - ⬜ Device combo lists input devices; AUDIO toggle starts/stops capture; status bar confirms
 - ⬜ WAVE: oscilloscope trace follows the channel audio (talk into a mic to test)

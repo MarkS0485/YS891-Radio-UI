@@ -51,11 +51,13 @@ exactly what you want for finding intermittent activity.
 
 ## Audio Lab
 
-CAT carries no audio — the rig's RX audio arrives as a Windows USB audio device. The Audio Lab
-captures **any input device**, or (the default) **"System audio (what you hear)"** via hand-rolled
-WASAPI loopback — whatever Windows is playing feeds a hand-rolled radix-2 FFT into three views:
-oscilloscope waveform, a proper 1980s bar analyzer with falling red peak caps, and a scrolling
-waterfall.
+CAT carries no audio — but the radio does. Run the FT-891's audio out through a splitter into
+the PC's **line-in** (the rig's USB port is CAT-only — no built-in sound card) and the Audio Lab
+is *literally listening to the receiver*: every CW note, SSB voice and digital burst in the
+passband is in that audio, so these views are a true live display of whatever you're tuned to.
+A hand-rolled radix-2 FFT feeds three views — oscilloscope waveform, a proper 1980s bar analyzer
+with falling red peak caps, and a scrolling waterfall. For zero-cable demos there's also
+**"System audio (what you hear)"** via hand-rolled WASAPI loopback: whatever Windows is playing.
 
 ![Audio lab](screenshots/14-audio-lab.png)
 ![Audio lab again](screenshots/15-audio-lab-2.png)
