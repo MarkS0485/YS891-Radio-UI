@@ -1,0 +1,7 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Shared drop shadow for raised knobs. -->
+    <DropShadowEffect x:Key="KnobShadow" ShadowDepth="3" BlurRadius="10" Opacity="0.7" Direction="270" />
+
+</ResourceDictionary>

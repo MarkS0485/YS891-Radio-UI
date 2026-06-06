@@ -1,0 +1,36 @@
+name: CI
+
+# Builds the WPF panel on every push / PR. Kept lean: a single Windows job
+# (net48 WPF only builds on Windows), and doc-only changes are skipped.
+# There is no test suite yet; the build (with TreatWarningsAsErrors) is the gate.
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore: [ '**/*.md' ]
+  pull_request:
+    branches: [ main ]
+    paths-ignore: [ '**/*.md' ]
+  workflow_dispatch:
+
+# A newer push to the same ref cancels the in-flight run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build (net48 WPF)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '8.0.x'   # any recent SDK builds net48 via the
+                                    # Microsoft.NETFramework.ReferenceAssemblies package
+      - name: Build
+        run: dotnet build YS891.RadioUI/YS891.RadioUI.csproj -c Release --nologo

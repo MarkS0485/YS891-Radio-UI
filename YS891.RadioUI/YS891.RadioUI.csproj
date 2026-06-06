@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>YS891.RadioUI</RootNamespace>
+    <AssemblyName>YS891-Radio-UI</AssemblyName>
+    <Product>YS891 Radio UI</Product>
+    <Description>A skeuomorphic Windows front panel for the Yaesu FT-891, driven by the FT891.Core CAT library.</Description>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FT891.Core" Version="2.0.0" />
+    <PackageReference Include="FT891.Simulator" Version="2.0.0" />
+    <PackageReference Include="System.IO.Ports" Version="10.0.8" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

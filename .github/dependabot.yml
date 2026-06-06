@@ -1,0 +1,43 @@
+# Dependabot — tuned aggressive, same as the FT891-Interface repo: checks
+# DAILY, allows every update type (including majors), and lifts the open-PR
+# cap so nothing is held back. CI (the net48 WPF build with warnings as
+# errors) runs on each PR, so any update that breaks the build shows up red
+# before you merge it.
+#
+# Ecosystems covered:
+#   * nuget          — the PackageReferences in YS891.RadioUI (incl. FT891.Core).
+#   * github-actions — the action versions pinned in .github/workflows/*.
+version: 2
+updates:
+  # ----------------------------------------------------------------- NuGet ---
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 20
+    # Deliberately NO `ignore` rules: major bumps are included. Some majors may
+    # drop net48 support; CI flags those PRs red rather than letting them merge blind.
+    groups:
+      nuget-minor-and-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+    labels: ["dependencies", "nuget"]
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    assignees: ["MarkS0485"]
+
+  # -------------------------------------------------------- GitHub Actions ---
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 20
+    groups:
+      github-actions-all:
+        patterns: ["*"]
+    labels: ["dependencies", "github-actions"]
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    assignees: ["MarkS0485"]
