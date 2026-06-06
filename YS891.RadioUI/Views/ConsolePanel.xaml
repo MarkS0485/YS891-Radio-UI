@@ -1,0 +1,50 @@
+<UserControl x:Class="YS891.RadioUI.Views.ConsolePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <TextBlock Text="RAW CAT COMMAND" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <DockPanel Margin="0,4">
+                <Button Content="SEND" Style="{StaticResource PanelButton}" Click="OnSendRaw" DockPanel.Dock="Right"
+                        Margin="6,0,0,0" />
+                <TextBox x:Name="RawBox" FontFamily="Consolas" FontSize="14" Text="ID;"
+                         ToolTip="A raw CAT frame, e.g. ID; or FA014250000; — the library handles the read" />
+            </DockPanel>
+            <TextBlock Text="Expected response bytes (-1 = auto via CatSpec)" Margin="0,4,0,0"
+                       Foreground="{StaticResource ButtonTextBrush}" FontSize="11" />
+            <TextBox x:Name="ExpectedBox" Text="-1" Width="60" HorizontalAlignment="Left" FontFamily="Consolas" />
+            <Border Background="{StaticResource LcdBackgroundBrush}" CornerRadius="4" Padding="8" Margin="0,8,0,0">
+                <TextBlock x:Name="RawResult" FontFamily="Consolas" FontSize="13"
+                           Foreground="{StaticResource LcdTextBrush}" Text="—" TextWrapping="Wrap" />
+            </Border>
+            <Button Content="SHOW LAST RESPONSE BYTES (hex)" Style="{StaticResource PanelButton}"
+                    Click="OnShowBytes" Margin="0,6,0,0" />
+
+            <Separator Margin="0,10" />
+            <TextBlock Text="ENGINE TUNING" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <TextBlock x:Name="DelayLabel" Text="Inter-command delay" Margin="0,4,0,0"
+                       Foreground="{StaticResource ButtonTextBrush}" />
+            <Slider x:Name="DelaySlider" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" />
+            <TextBlock x:Name="RetryLabel" Text="Timeout retries" Foreground="{StaticResource ButtonTextBrush}" />
+            <Slider x:Name="RetrySlider" Minimum="0" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True" />
+        </StackPanel>
+
+        <DockPanel Grid.Column="1">
+            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,0,0,6">
+                <TextBlock Text="WIRE TRACE" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas"
+                           VerticalAlignment="Center" DockPanel.Dock="Left" />
+                <ToggleButton x:Name="TraceToggle" Content="TRACE" Style="{StaticResource PanelToggle}"
+                              Margin="10,0,0,0" DockPanel.Dock="Left" IsChecked="True" />
+                <Button Content="CLEAR" Style="{StaticResource PanelButton}" Click="OnClearTrace"
+                        Margin="10,0,0,0" DockPanel.Dock="Left" />
+            </DockPanel>
+            <ListBox x:Name="TraceList" Background="{StaticResource LcdBackgroundBrush}"
+                     Foreground="{StaticResource LcdTextBrush}" FontFamily="Consolas" FontSize="12" />
+        </DockPanel>
+    </Grid>
+</UserControl>

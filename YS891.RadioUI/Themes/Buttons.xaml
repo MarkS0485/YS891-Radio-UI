@@ -58,4 +58,57 @@
         <Setter Property="MinWidth" Value="64" />
         <Setter Property="FontSize" Value="12" />
     </Style>
+
+    <!-- Command button whose legend lights amber while the bound state (Tag) is true. -->
+    <Style x:Key="PanelLitButton" TargetType="Button" BasedOn="{StaticResource PanelButton}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource IndicatorOnBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- MOX: legend turns red while armed (press-again-to-confirm). -->
+    <Style x:Key="MoxButton" TargetType="Button" BasedOn="{StaticResource PanelButton}">
+        <Setter Property="MinHeight" Value="34" />
+        <Setter Property="FontSize" Value="12" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource MeterRedBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Dark tabs for the full-feature layout. -->
+    <Style TargetType="TabControl">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+    <Style TargetType="TabItem">
+        <Setter Property="Foreground" Value="{StaticResource ButtonTextBrush}" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border x:Name="Face" Background="{StaticResource StatusBarBrush}"
+                            BorderBrush="{StaticResource ButtonBorderBrush}" BorderThickness="1,1,1,0"
+                            CornerRadius="5,5,0,0" Margin="2,4,0,0" Padding="12,5">
+                        <ContentPresenter ContentSource="Header" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Face" Property="Background" Value="{StaticResource ButtonFaceBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource IndicatorOnBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Face" Property="BorderBrush" Value="{StaticResource PanelEdgeBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

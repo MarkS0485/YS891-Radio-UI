@@ -1,0 +1,88 @@
+<UserControl x:Class="YS891.RadioUI.Views.CwPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- CW sending + keyer memories -->
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <TextBlock Text="SEND CW" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <TextBox x:Name="CwText" Margin="0,4" FontFamily="Consolas" FontSize="14" MaxLength="50"
+                     ToolTip="Up to 50 characters — SendCw keys the radio in CW mode!" />
+            <DockPanel LastChildFill="False">
+                <Button Content="SEND (keys the radio!)" Style="{StaticResource PanelButton}"
+                        Click="OnSendCw" DockPanel.Dock="Left" />
+                <Button Content="ZERO-IN" Style="{StaticResource PanelButton}" Click="OnZeroIn"
+                        Margin="8,0,0,0" DockPanel.Dock="Left"
+                        ToolTip="Auto zero-beat onto the received CW signal" />
+            </DockPanel>
+
+            <Separator Margin="0,10" />
+            <TextBlock Text="KEYER MEMORIES (1–5)" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <Grid Margin="0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition />
+                </Grid.RowDefinitions>
+            </Grid>
+            <StackPanel x:Name="KeyerRows" />
+        </StackPanel>
+
+        <!-- Voice messages -->
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="VOICE MESSAGE MEMORY (1–5)" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <TextBlock Text="Slot" Margin="0,6,0,0" Foreground="{StaticResource ButtonTextBrush}" />
+            <ComboBox x:Name="VoiceSlot" Width="80" HorizontalAlignment="Left" />
+            <DockPanel Margin="0,8,0,0" LastChildFill="False">
+                <Button Content="LOAD (record slot)" Style="{StaticResource PanelButton}" Click="OnLoadMessage"
+                        DockPanel.Dock="Left"
+                        ToolTip="LoadMessage — puts the radio into record for this slot (speak into the mic)" />
+                <Button Content="PLAYBACK (keys the radio!)" Style="{StaticResource PanelButton}" Click="OnPlayback"
+                        Margin="8,0,0,0" DockPanel.Dock="Left"
+                        ToolTip="Playback transmits the stored voice message" />
+            </DockPanel>
+            <TextBlock x:Name="VoiceStatus" Margin="0,8,0,0" Foreground="{StaticResource LcdAccentBrush}"
+                       FontFamily="Consolas" TextWrapping="Wrap" />
+
+            <Separator Margin="0,12" />
+            <TextBlock Text="MORSE DECODER (reads the S-meter keying over CAT)"
+                       Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <DockPanel Margin="0,6,0,0" LastChildFill="False">
+                <Button Content="TUNE TO BEACON" Style="{StaticResource PanelButton}" Click="OnTuneBeacon"
+                        DockPanel.Dock="Left"
+                        ToolTip="14.058 MHz CW — the built-in simulator keys a beacon there" />
+                <TextBlock Text="  WPM " Foreground="{StaticResource ButtonTextBrush}"
+                           VerticalAlignment="Center" DockPanel.Dock="Left" />
+                <TextBox x:Name="WpmBox" Text="16" Width="40" FontFamily="Consolas"
+                         VerticalAlignment="Center" DockPanel.Dock="Left" />
+                <ToggleButton x:Name="DecodeToggle" Content="DECODE" Style="{StaticResource PanelToggle}"
+                              Checked="OnDecodeToggle" Unchecked="OnDecodeToggle"
+                              Margin="10,0,0,0" DockPanel.Dock="Left" />
+                <Ellipse x:Name="KeyLamp" Width="12" Height="12" Margin="10,0,0,0"
+                         Fill="{StaticResource IndicatorOffBrush}" VerticalAlignment="Center"
+                         DockPanel.Dock="Left" ToolTip="Key-down indicator" />
+            </DockPanel>
+            <Border Background="{StaticResource LcdBackgroundBrush}" CornerRadius="4" Padding="8" Margin="0,8,0,0"
+                    MinHeight="80">
+                <StackPanel>
+                    <TextBlock Text="READABLE (shorthand expanded)" FontSize="10"
+                               Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+                    <TextBlock x:Name="DecodedText" FontFamily="Consolas" FontSize="13"
+                               Foreground="{StaticResource MeterGreenBrush}" TextWrapping="Wrap" Text="—" />
+                    <TextBlock Text="RAW (dits/dahs + letters)" FontSize="10" Margin="0,8,0,0"
+                               Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+                    <TextBlock x:Name="RawCode" FontFamily="Consolas" FontSize="12"
+                               Foreground="{StaticResource LcdDimTextBrush}" TextWrapping="Wrap" Text="—" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

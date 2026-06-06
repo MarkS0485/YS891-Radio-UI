@@ -1,0 +1,38 @@
+<UserControl x:Class="YS891.RadioUI.Views.MetersPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="360" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Live meters -->
+        <DockPanel Grid.Column="0" Margin="0,0,10,0">
+            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,0,0,8">
+                <ToggleButton x:Name="LiveToggle" Content="LIVE METERS" Style="{StaticResource PanelToggle}"
+                              Checked="OnLiveToggle" Unchecked="OnLiveToggle" DockPanel.Dock="Left"
+                              ToolTip="Polls every meter twice a second (SWR/ALC/PWR/COMP only move during TX)" />
+                <TextBlock x:Name="BusyText" Text="" FontFamily="Consolas" Foreground="{StaticResource IndicatorOnBrush}"
+                           VerticalAlignment="Center" Margin="12,0" DockPanel.Dock="Left" />
+            </DockPanel>
+            <StackPanel x:Name="MeterRows" />
+        </DockPanel>
+
+        <!-- Radio status -->
+        <StackPanel Grid.Column="1">
+            <Button Content="READ RADIO STATUS" Style="{StaticResource PanelButton}" Click="OnReadStatus"
+                    ToolTip="RadioId, RadioInfo (IF), opposite VFO (OI), VFO B, transmit state" />
+            <Border Background="{StaticResource LcdBackgroundBrush}" CornerRadius="4" Padding="10" Margin="0,8,0,0">
+                <TextBlock x:Name="StatusText" FontFamily="Consolas" FontSize="13"
+                           Foreground="{StaticResource LcdTextBrush}" Text="—" TextWrapping="Wrap" />
+            </Border>
+            <TextBlock Text="VFO B" Margin="0,12,0,2" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <DockPanel>
+                <Button Content="SET" Style="{StaticResource PanelButton}" Click="OnSetVfoB" DockPanel.Dock="Right"
+                        Margin="6,0,0,0" ToolTip="SetVfoBFrequency — accepts 7.090.000 / 7090.0 kHz / 7.09 MHz forms" />
+                <TextBox x:Name="VfoBBox" FontFamily="Consolas" FontSize="14" />
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

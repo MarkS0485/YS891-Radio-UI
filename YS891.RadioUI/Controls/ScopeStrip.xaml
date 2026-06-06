@@ -1,0 +1,26 @@
+<UserControl x:Class="YS891.RadioUI.Controls.ScopeStrip"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border Background="{StaticResource LcdGridBrush}" CornerRadius="3" ClipToBounds="True">
+        <Grid>
+            <Viewbox Stretch="Fill">
+                <!-- Fixed design space; scaled to whatever the LCD gives us. -->
+                <Canvas x:Name="Plot" Width="480" Height="120" Background="Transparent">
+                    <Polyline x:Name="Trace" StrokeThickness="1.5"
+                              Stroke="{StaticResource LcdAccentBrush}" />
+                    <Polygon x:Name="TraceFill" Opacity="0.25"
+                             Fill="{StaticResource LcdAccentBrush}" />
+                </Canvas>
+            </Viewbox>
+            <TextBlock x:Name="ModeBadge" Text="LIVE" FontFamily="Consolas" FontSize="11"
+                       Foreground="{StaticResource LcdDimTextBrush}"
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,3" />
+            <TextBlock x:Name="LowLabel" FontFamily="Consolas" FontSize="11"
+                       Foreground="{StaticResource LcdDimTextBrush}"
+                       HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="6,3" />
+            <TextBlock x:Name="HighLabel" FontFamily="Consolas" FontSize="11"
+                       Foreground="{StaticResource LcdDimTextBrush}"
+                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="6,3" />
+        </Grid>
+    </Border>
+</UserControl>

@@ -14,7 +14,7 @@ namespace YS891.RadioUI.Services
             set => this[nameof(LastKind)] = value;
         }
 
-        [UserScopedSetting, DefaultSettingValue("")]
+        [UserScopedSetting, DefaultSettingValue("COM8")]
         public string LastComPort
         {
             get => (string)this[nameof(LastComPort)];

@@ -1,0 +1,39 @@
+<UserControl x:Class="YS891.RadioUI.Controls.RotaryDial"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Cursor="Hand">
+    <Viewbox Stretch="Uniform">
+        <!-- Fixed 200x200 design space; the Viewbox scales it. -->
+        <Grid x:Name="DesignRoot" Width="200" Height="200" Background="Transparent">
+            <!-- Outer rim -->
+            <Ellipse Fill="{StaticResource KnobRimBrush}" Effect="{StaticResource KnobShadow}" />
+            <!-- Face -->
+            <Ellipse Margin="10" Fill="{StaticResource KnobFaceBrush}" />
+            <!-- Rotating part: knurl ticks + finger dimple -->
+            <Grid x:Name="Rotor" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <RotateTransform x:Name="RotorTransform" />
+                </Grid.RenderTransform>
+                <Canvas x:Name="TickCanvas" />
+                <Ellipse Width="26" Height="26" HorizontalAlignment="Center" VerticalAlignment="Top"
+                         Margin="0,26,0,0">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush GradientOrigin="0.4,0.35">
+                            <GradientStop Color="#FF0D0E0F" Offset="0" />
+                            <GradientStop Color="#FF3C4044" Offset="1" />
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+            <!-- Center hub -->
+            <Ellipse Width="58" Height="58">
+                <Ellipse.Fill>
+                    <RadialGradientBrush GradientOrigin="0.35,0.3">
+                        <GradientStop Color="#FF515559" Offset="0" />
+                        <GradientStop Color="#FF202224" Offset="1" />
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Grid>
+    </Viewbox>
+</UserControl>

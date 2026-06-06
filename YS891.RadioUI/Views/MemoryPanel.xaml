@@ -1,0 +1,65 @@
+<UserControl x:Class="YS891.RadioUI.Views.MemoryPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <TextBlock Text="CHANNEL" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <DockPanel Margin="0,4">
+                <Button Content="CH ▼" Style="{StaticResource PanelButton}" Click="OnChDown" DockPanel.Dock="Left" />
+                <Button Content="CH ▲" Style="{StaticResource PanelButton}" Click="OnChUp" DockPanel.Dock="Right" Margin="6,0,0,0" />
+                <TextBox x:Name="ChannelBox" Text="1" TextAlignment="Center" Margin="6,0"
+                         FontFamily="Consolas" FontSize="16" />
+            </DockPanel>
+            <Button Content="GO TO CHANNEL" Style="{StaticResource PanelButton}" Click="OnSetChannel" Margin="0,2"
+                    ToolTip="SetMemoryChannel — selects the channel on the radio" />
+            <Button Content="READ CHANNEL" Style="{StaticResource PanelButton}" Click="OnReadChannel" Margin="0,2"
+                    ToolTip="ReadMemory — shows what's stored without touching the VFO" />
+            <TextBlock x:Name="ChannelInfo" FontFamily="Consolas" Foreground="{StaticResource LcdAccentBrush}"
+                       Margin="0,4" Text="—" TextWrapping="Wrap" />
+
+            <Separator Margin="0,8" />
+            <TextBlock Text="VFO ⇄ MEMORY" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <TextBox x:Name="TagBox" Margin="0,4" MaxLength="12"
+                     ToolTip="Optional tag stored with WRITE VFO▶MEM (max 12 chars)" />
+            <Button Content="WRITE VFO ▶ MEM (with tag)" Style="{StaticResource PanelButton}" Click="OnWriteMemory" Margin="0,2"
+                    ToolTip="WriteMemory — stores the current VFO A frequency+mode into the channel above" />
+            <Button Content="QUICK: VFO A ▶ MEM" Style="{StaticResource PanelButton}" Click="OnVfoToMem" Margin="0,2"
+                    ToolTip="CopyVfoAToMemory" />
+            <Button Content="MEM ▶ VFO A" Style="{StaticResource PanelButton}" Click="OnMemToVfo" Margin="0,2"
+                    ToolTip="CopyMemoryToVfoA" />
+
+            <Separator Margin="0,8" />
+            <TextBlock Text="QUICK MEMORY BANK" Foreground="{StaticResource LcdDimTextBrush}" FontFamily="Consolas" />
+            <DockPanel Margin="0,4">
+                <Button Content="QMB STORE" Style="{StaticResource PanelButton}" Click="OnQmbStore" DockPanel.Dock="Left" />
+                <Button Content="QMB RECALL" Style="{StaticResource PanelButton}" Click="OnQmbRecall" Margin="6,0,0,0" />
+            </DockPanel>
+        </StackPanel>
+
+        <DockPanel Grid.Column="1">
+            <DockPanel DockPanel.Dock="Top" Margin="0,0,0,6" LastChildFill="False">
+                <Button x:Name="ReadAllButton" Content="READ ALL CHANNELS (1–99)" Style="{StaticResource PanelButton}"
+                        Click="OnReadAll" DockPanel.Dock="Left" />
+                <TextBlock x:Name="ReadAllProgress" Foreground="{StaticResource LcdDimTextBrush}"
+                           VerticalAlignment="Center" Margin="10,0" DockPanel.Dock="Left" />
+            </DockPanel>
+            <ListView x:Name="ChannelList" Background="{StaticResource LcdBackgroundBrush}"
+                      Foreground="{StaticResource LcdTextBrush}" FontFamily="Consolas"
+                      MouseDoubleClick="OnChannelActivate"
+                      ToolTip="Double-click a row to select that channel and copy it to VFO A">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Ch" Width="50" DisplayMemberBinding="{Binding Channel}" />
+                        <GridViewColumn Header="Frequency" Width="140" DisplayMemberBinding="{Binding Frequency}" />
+                        <GridViewColumn Header="Mode" Width="90" DisplayMemberBinding="{Binding Mode}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </Grid>
+</UserControl>

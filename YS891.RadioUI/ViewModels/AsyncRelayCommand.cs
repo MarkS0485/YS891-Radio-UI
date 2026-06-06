@@ -24,7 +24,15 @@ namespace YS891.RadioUI.ViewModels
             _canExecute = canExecute;
         }
 
-        public event EventHandler CanExecuteChanged;
+        /// <summary>
+        /// Chained to CommandManager so buttons re-query whenever WPF suspects state
+        /// changed (and whenever the VM calls InvalidateRequerySuggested).
+        /// </summary>
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
 
         public bool CanExecute(object parameter) => !_running && (_canExecute == null || _canExecute());
 
@@ -53,6 +61,6 @@ namespace YS891.RadioUI.ViewModels
         }
 
         public void RaiseCanExecuteChanged()
-            => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            => CommandManager.InvalidateRequerySuggested();
     }
 }

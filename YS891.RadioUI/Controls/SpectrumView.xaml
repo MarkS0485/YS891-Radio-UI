@@ -1,0 +1,14 @@
+<UserControl x:Class="YS891.RadioUI.Controls.SpectrumView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border Background="{StaticResource LcdGridBrush}" CornerRadius="3" ClipToBounds="True">
+        <Grid>
+            <Viewbox Stretch="Fill">
+                <Canvas x:Name="Plot" Width="480" Height="120" Background="Transparent" />
+            </Viewbox>
+            <TextBlock Text="AUDIO SPECTRUM 0–5 kHz" FontFamily="Consolas" FontSize="11"
+                       Foreground="{StaticResource LcdDimTextBrush}"
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,3" />
+        </Grid>
+    </Border>
+</UserControl>

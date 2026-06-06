@@ -1,0 +1,36 @@
+<UserControl x:Class="YS891.RadioUI.Controls.HeatmapView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Border Background="{StaticResource LcdGridBrush}" CornerRadius="3" ClipToBounds="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Max-hold spectrum across the top -->
+            <Viewbox Grid.Row="0" Stretch="Fill">
+                <Canvas Width="480" Height="60" Background="Transparent">
+                    <Polyline x:Name="MaxHold" StrokeThickness="1.2"
+                              Stroke="{StaticResource IndicatorOnBrush}" />
+                    <Polyline x:Name="CurrentPass" StrokeThickness="1.2"
+                              Stroke="{StaticResource LcdAccentBrush}" />
+                </Canvas>
+            </Viewbox>
+
+            <!-- Frequency × time heat rows below -->
+            <Image x:Name="Bitmap" Grid.Row="1" Stretch="Fill"
+                   RenderOptions.BitmapScalingMode="NearestNeighbor" />
+
+            <TextBlock Grid.Row="0" Text="BAND HEATMAP — max-hold + per-pass" FontFamily="Consolas" FontSize="11"
+                       Foreground="{StaticResource LcdDimTextBrush}"
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,3" />
+            <TextBlock x:Name="LowLabel" Grid.Row="1" FontFamily="Consolas" FontSize="11"
+                       Foreground="{StaticResource LcdDimTextBrush}"
+                       HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="6,3" />
+            <TextBlock x:Name="HighLabel" Grid.Row="1" FontFamily="Consolas" FontSize="11"
+                       Foreground="{StaticResource LcdDimTextBrush}"
+                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="6,3" />
+        </Grid>
+    </Border>
+</UserControl>
