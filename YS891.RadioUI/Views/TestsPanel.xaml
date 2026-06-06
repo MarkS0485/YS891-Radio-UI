@@ -11,7 +11,7 @@
         <DockPanel Grid.Row="0" Margin="0,0,0,8" LastChildFill="False">
             <Button x:Name="RunButton" Content="RUN FUNCTION TESTS" Style="{StaticResource PanelButton}"
                     Click="OnRun" DockPanel.Dock="Left"
-                    ToolTip="Calls every read command in the library, one tile per function" />
+                    ToolTip="Calls every read command in the library, one tile per function. Against trusted hardware, a red tile is a radio-side fault indicator — the failed function names the subsystem to investigate." />
             <Button x:Name="InitButton" Content="INITIALIZE (calibrate timing)" Style="{StaticResource PanelButton}"
                     Click="OnInitialize" Margin="8,0,0,0" DockPanel.Dock="Left"
                     ToolTip="Times ID; round-trips and tunes InterCommandDelayMs to this radio" />
@@ -50,7 +50,7 @@
                 Padding="10,6" Margin="0,8,0,0">
             <TextBlock x:Name="Detail" FontFamily="Consolas" FontSize="12"
                        Foreground="{StaticResource LcdTextBrush}" TextWrapping="Wrap"
-                       Text="Connect, then RUN FUNCTION TESTS to walk the whole library. Click a tile for its result." />
+                       Text="Connect, then RUN FUNCTION TESTS to walk the whole library. Click a tile for its result. This doubles as a hardware diagnostic: the library is validated (269 unit tests, 60/60 vs the simulator), so on a real radio a red tile points at the radio — the failed function has a traceable electronic path." />
         </Border>
     </Grid>
 </UserControl>

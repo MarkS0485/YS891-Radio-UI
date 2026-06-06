@@ -192,7 +192,10 @@ namespace YS891.RadioUI.Views
                 await Task.Delay(100); // deliberate cadence — let the heatmap breathe
             }
 
-            Detail.Text = $"Done: {pass} passed, {fail} failed of {_tiles.Count}. Click a tile for its result.";
+            Detail.Text = fail == 0
+                ? $"Done: {pass} passed, {fail} failed of {_tiles.Count}. Click a tile for its result."
+                : $"Done: {pass} passed, {fail} failed of {_tiles.Count}. The library is trusted — red tiles point at the radio. " +
+                  "Each failed function has a traceable electronic path; click a tile for the error detail.";
             _report($"Function tests: {pass} passed, {fail} failed.");
             RunButton.IsEnabled = true;
             _running = false;

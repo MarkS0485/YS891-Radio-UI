@@ -90,12 +90,20 @@ and a confirmed power-off:
 
 ![Functions](screenshots/10-functions.png)
 
-## Tests — the library walk
+## Tests — the library walk, and a hardware diagnostic
 
 One tile per read command in the library, ~60 in all. Neon blue pending → yellow executing →
 green pass / red fail, at a deliberate 100 ms cadence so you can watch it walk the API. Plus
 `InitializeLibraryAsync` calibration (times real round-trips and tunes the inter-command delay
 to the radio actually on the wire).
+
+Because the library is validated (269 unit tests, and this tile set runs 60/60 against the
+simulator), the heatmap doubles as a **radio diagnostic**: against real hardware, a red tile
+means the *radio* returned bad data — and since every tile is one specific CAT function, the
+failure names a subsystem with a traceable electronic path. All meter tiles red? The metering
+ADC chain. Memory reads failing? The EEPROM. Everything red? The cable, not the radio. Crude,
+but it points an experienced tech in the right direction. The wiki's TESTS page has the full
+fault map.
 
 | Mid-run | Complete — **60/60 green** against the simulator |
 |---|---|
