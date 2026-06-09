@@ -69,8 +69,6 @@
                     <CheckBox x:Name="ContourCheck" Content="Contour" Margin="0,6,0,0" Click="OnContour" />
                     <TextBlock x:Name="ContourFreqLabel" Text="Contour freq" />
                     <Slider x:Name="ContourFreqSlider" Minimum="10" Maximum="3200" TickFrequency="10" />
-                    <TextBlock x:Name="ContourWidthLabel" Text="Contour width" />
-                    <Slider x:Name="ContourWidthSlider" Minimum="1" Maximum="11" TickFrequency="1" />
                     <TextBlock x:Name="BandwidthLabel" Text="IF bandwidth" Margin="0,6,0,0" />
                     <Slider x:Name="BandwidthSlider" Minimum="0" Maximum="21" TickFrequency="1" />
                 </StackPanel>
@@ -82,10 +80,8 @@
                     <TextBlock x:Name="PowerLabel" Text="TX power" />
                     <Slider x:Name="PowerSlider" />
                     <CheckBox x:Name="ProcCheck" Content="Speech processor" Margin="0,6,0,0" Click="OnProc" />
-                    <TextBlock x:Name="ProcInLabel" Text="Proc input" />
-                    <Slider x:Name="ProcInSlider" Minimum="0" Maximum="100" TickFrequency="1" />
-                    <TextBlock x:Name="ProcOutLabel" Text="Proc output" />
-                    <Slider x:Name="ProcOutSlider" Minimum="0" Maximum="100" TickFrequency="1" />
+                    <TextBlock x:Name="ProcLevelLabel" Text="Proc level" />
+                    <Slider x:Name="ProcLevelSlider" Minimum="0" Maximum="100" TickFrequency="1" />
                     <CheckBox x:Name="VoxCheck" Content="VOX" Margin="0,6,0,0" Click="OnVox" />
                     <TextBlock x:Name="VoxGainLabel" Text="VOX gain" />
                     <Slider x:Name="VoxGainSlider" />
@@ -94,9 +90,9 @@
                     <TextBlock Text="Antenna tuner" Margin="0,6,0,0" />
                     <ComboBox x:Name="TunerCombo" SelectionChanged="OnTuner"
                               ToolTip="START keys the radio briefly to tune — dummy load or clear frequency!" />
-                    <TextBlock Text="Repeater offset" Margin="0,6,0,0" />
-                    <TextBlock x:Name="OffsetLabel" Text="0 kHz" />
-                    <Slider x:Name="OffsetSlider" Minimum="-500" Maximum="500" TickFrequency="10" />
+                    <TextBlock Text="Repeater shift" Margin="0,6,0,0" />
+                    <ComboBox x:Name="ShiftCombo" SelectionChanged="OnShift"
+                              ToolTip="Shift direction over CAT; the offset magnitude is a radio menu setting, not a CAT parameter." />
                     <CheckBox x:Name="CtcssCheck" Content="CTCSS" Margin="0,6,0,0" Click="OnCtcss" />
                     <TextBlock x:Name="CtcssNumLabel" Text="Tone #0" />
                     <Slider x:Name="CtcssNumSlider" TickFrequency="1" />
