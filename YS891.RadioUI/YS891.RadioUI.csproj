@@ -19,7 +19,7 @@
   <ItemGroup>
     <PackageReference Include="FT891.Core" Version="2.1.0" />
     <PackageReference Include="FT891.Simulator" Version="2.1.0" />
-    <PackageReference Include="System.IO.Ports" Version="10.0.8" />
+    <PackageReference Include="System.IO.Ports" Version="10.0.9" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
   </ItemGroup>
 
